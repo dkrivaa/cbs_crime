@@ -14,11 +14,12 @@ def latest_monthly():
     month = month_dict[(df.columns[-1].split(',')[1])]  # month as integer from dict
 
     # Calculating same period change
-    from_year_start = df.iloc[:, -1:-month-1:-1].sum(axis=1)
-    same_period = df.iloc[:, -1-12:-month-1-12:-1].sum(axis=1)
-    change = (from_year_start/same_period-1) * 100
-    abs_change = from_year_start - same_period
-    df_label = df['English']
-    df_change = pd.DataFrame({'label': df_label, 'change': change, 'absolute change': abs_change})
-    df_change.to_csv('change.csv', index=False)
+    if df.columns[-1].split(',')[1] != 'I':
+        from_year_start = df.iloc[:, -1:-month-1:-1].sum(axis=1)
+        same_period = df.iloc[:, -1-12:-month-1-12:-1].sum(axis=1)
+        change = (from_year_start/same_period-1) * 100
+        abs_change = from_year_start - same_period
+        df_label = df['English']
+        df_change = pd.DataFrame({'label': df_label, 'change': change, 'absolute change': abs_change})
+        df_change.to_csv('change.csv', index=False)
 
