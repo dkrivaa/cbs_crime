@@ -155,7 +155,6 @@ def get_data():
     df.at[55, 'English'] = 'Total other offences'
 
     # Saving files
-    df.to_excel('RawData.xlsx', index=False)
     df.to_csv('RawData.csv', index=False)
 
 
@@ -169,7 +168,6 @@ def year_data():
 
     # Drop the selected columns and make df_year dataframe
     df_year = df.drop(df.columns[columns_to_drop_year], axis=1)
-    df_year.to_excel('year.xlsx', index=False)
     df_year.to_csv('year.csv', index=False)
     # _________________________
 
@@ -209,7 +207,6 @@ def month_data():
     # Change the name of the specified column
     df_month.rename(columns={'2019,': '2019,I'}, inplace=True)
 
-    df_month.to_excel('month.xlsx', index=False)
     df_month.to_csv('month.csv', index=False)
 
 

@@ -17,7 +17,7 @@ def latest_monthly():
     if df.columns[-1].split(',')[1] != 'I':
         from_year_start = df.iloc[:, -1:-month-1:-1].sum(axis=1)
         same_period = df.iloc[:, -1-12:-month-1-12:-1].sum(axis=1)
-        change = (from_year_start/same_period-1) * 100
+        change = (from_year_start/same_period-1)
         abs_change = from_year_start - same_period
         df_label = df['English']
         df_change = pd.DataFrame({'label': df_label, 'change': change, 'absolute change': abs_change})
